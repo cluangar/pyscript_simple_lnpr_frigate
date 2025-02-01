@@ -1,0 +1,39 @@
+alias: Demo LNPR automation
+description: ""
+triggers:
+  - topic: frigate/events
+    id: frigate-event
+    value_template: "{{ value_json[\"after\"][\"current_attributes\"][0]['label'] }}"
+    variables:
+      after_zones: "{{ trigger.payload_json[\"after\"][\"entered_zones\"] }}"
+      before_zones: "{{ trigger.payload_json[\"before\"][\"entered_zones\"] }}"
+      current_zones: "{{ trigger.payload_json[\"after\"][\"current_zones\"] }}"
+      camera: "{{ trigger.payload_json[\"after\"][\"camera\"] }}"
+      id: "{{ trigger.payload_json[\"after\"][\"id\"] }}"
+      label: "{{ trigger.payload_json[\"after\"][\"label\"] }}"
+    trigger: mqtt
+    enabled: true
+conditions:
+  - condition: or
+    conditions:
+      - condition: template
+        value_template: >-
+          {{ ["scale_zone1"] | select("in", current_zones) | list | length > 0
+          }}
+  - condition: template
+    value_template: "{{ trigger.payload_json['after']['sub_label']  is none }}"
+actions:
+  - data_template:
+      event_id: "{{id}}"
+      FRIGATE_HOST: http://<frigate>:5000
+      LNPR_API: http://<lnpr_api>:8001/alpr
+    action: pyscript.lnpr_s
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+    enabled: true
+mode: parallel
+trace:
+  stored_traces: 20
+max: 20
