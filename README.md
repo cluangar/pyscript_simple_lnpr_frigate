@@ -2,6 +2,7 @@ Use on Home Assistant to send event to LNPR API
 
 # Prerequisites
 1. Addons pyscript
+2. LNPR API: docker pull cluangar/simple_lnpr_frigate
 
 # Running
 1. Add Automation yaml
