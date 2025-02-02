@@ -7,7 +7,6 @@ Use on Home Assistant to send event to LNPR API
 # FlowChart (lnpr_s pyscript)
 ![FlowChart_lnpr_s_pyscript](https://github.com/user-attachments/assets/391e0711-a39d-4b28-a834-2fef12746956)
 
-
 # FlowChart (Automation)
 ![Automation_Call_simple_lnpr_api](https://github.com/user-attachments/assets/9a69c1c3-c8c5-4840-995a-cfbc321f9995)
 
