@@ -18,4 +18,8 @@ Use on Home Assistant to send event to LNPR API
 2. Add Automation yaml to Hass
 3. Install LNPR API Docker
 
+*Recommanded use 2 dual stream resolution from Camera
+1. Low Res for Detect (Recommaned minimum 720P or higher)
+2. Righ Res for Record (Recommaned maximum can used for OCR)
+
 ![Demo_Simple_LNPR01_Filter](https://github.com/user-attachments/assets/e77500c4-554a-4688-b45d-f46b348943a4)
